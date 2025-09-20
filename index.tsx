@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
-const SERVER_URL = "https://oabel-classroom-management-server.vercel.app/users";
+const SERVER_URL = "https://classroom-management-server.vercel.app/users";
 
 export default function HandsOnForm() {
   const [firstName, setFirstName] = useState(``);
@@ -32,16 +32,16 @@ export default function HandsOnForm() {
       throw new Error ("Server Not Responding ")
     }
 
-    const result = await response .json();
+   const result = await response.json();
     setMessage("Attendance is Submitted");
     setFirstName("");
     setLastName("");
     setSection("");
+  } catch (error) {
+    console.error("Fetch failed:", error);
+    setMessage("Failed to connect to server");
   }
-    catch(error){
-      console.error(`Server Error or Connection Failed.`);
 
-    }
   };
   const handleAbsent = async () =>{
     setMessage("Absent");
